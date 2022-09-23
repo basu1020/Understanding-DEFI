@@ -11,7 +11,7 @@ contract UniswapV3Twap {
     address public token1;
     address public pool;
 
-    constructor(address _uniswapFactory_, address _token0, address _token1, uint24 fee) {
+    constructor(address _uniswapFactory_, address _token0, address _token1, uint24 fee) {   
         token0 = _token0;
         token1 = _token1;
         address _pool = IUniswapV3Factory(_uniswapFactory_).getPool(token0, token1, fee);     

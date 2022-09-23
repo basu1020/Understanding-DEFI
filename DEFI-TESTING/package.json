@@ -8,8 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "license": "ISC", "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
     "@uniswap/v3-core": "^1.0.1",
     "@uniswap/v3-periphery": "^1.4.1",

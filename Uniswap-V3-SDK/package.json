@@ -12,6 +12,8 @@
     "@uniswap/sdk": "^3.0.3",
     "@uniswap/sdk-core": "^3.0.2",
     "@uniswap/smart-order-router": "^2.10.0",
+    "@uniswap/v3-core": "^1.0.1",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "ethers": "^5.7.1",
     "jsbi": "^3.2.5"
