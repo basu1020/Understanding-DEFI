@@ -39,25 +39,25 @@ const mainFunc = async (token0Address, token1Address, fee, amount) => {
     console.log(poolAddress)
 
     //gettng Arithmetic Mean Tick
-    // const amountIn = ethers.utils.parseUnits(amount, 18)
-    // const quotedAmountOut = await QuoterContract.callStatic.quoteExactInputSingle(
-    //     token0Address,
-    //     token1Address,
-    //     fee,
-    //     amountIn,
-    //     0
-    // )
-    // const amountOut = ethers.utils.formatUnits(quotedAmountOut, 18)
-    // console.log(amountOut)
+    const amountIn = ethers.utils.parseUnits(amount, 18)
+    const quotedAmountOut = await QuoterContract.callStatic.quoteExactInputSingle(
+        token0Address,
+        token1Address,
+        fee,
+        amountIn,
+        0
+    )
+    const amountOut = ethers.utils.formatUnits(quotedAmountOut, 18)
+    console.log(amountOut)
 
     //getting Amounts Out
 }
 
-mainFunc(WETH, USDC, 3000, '1')
-mainFunc(WETH, DAI, 3000, '1')
-mainFunc(WETH, LINK, 3000, '1') 
-mainFunc(LINK, USDC, 3000, '1')
-mainFunc(UNI, DAI, 3000, '1')
+mainFunc(WETH, UNI, 3000, '1')
+// mainFunc(WETH, DAI, 3000, '1')
+// mainFunc(WETH, LINK, 3000, '1') 
+// mainFunc(LINK, USDC, 3000, '1')
+// mainFunc(UNI, DAI, 3000, '1')
 // mainFunc(UNI, USDC, 3000, '1') 
 
 
