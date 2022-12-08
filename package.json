@@ -1,1 +1,10 @@
-{}
+{
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.3"
+  },
+  "dependencies": {
+    "@aave/core-v3": "^1.16.2-beta.1"
+  }
+}

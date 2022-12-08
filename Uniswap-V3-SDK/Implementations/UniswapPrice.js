@@ -32,33 +32,33 @@ const QuoterContract = new ethers.Contract(
 const wallet = new ethers.Wallet(WALLET_SECRET)
 const connectedWallet = wallet.connect(web3provider)
 
-const mainFunc = async (token0Address, token1Address, fee, amount) => {
+const mainFunc = async (token0name, token1name, token0Address, token1Address, fee, amount) => {
 
     //getting Pool Address 
     const poolAddress = await FactoryContract.connect(connectedWallet).getPool(token0Address, token1Address, fee)
-    console.log(poolAddress)
+    console.log(poolAddress, `${token0name} -> ${token1name}`)
 
-    //gettng Arithmetic Mean Tick
-    const amountIn = ethers.utils.parseUnits(amount, 18)
-    const quotedAmountOut = await QuoterContract.callStatic.quoteExactInputSingle(
-        token0Address,
-        token1Address,
-        fee,
-        amountIn,
-        0
-    )
-    const amountOut = ethers.utils.formatUnits(quotedAmountOut, 18)
-    console.log(amountOut)
+    // gettng Arithmetic Mean Tick
+    // const amountIn = ethers.utils.parseUnits(amount, 18)
+    // const quotedAmountOut = await QuoterContract.callStatic.quoteExactInputSingle(
+    //     token0Address,
+    //     token1Address,
+    //     fee,
+    //     amountIn,
+    //     2
+    // )
+    // const amountOut = ethers.utils.formatUnits(quotedAmountOut, 18)
+    // console.log(amountOut)
 
     //getting Amounts Out
 }
 
-mainFunc(WETH, UNI, 3000, '1')
-// mainFunc(WETH, DAI, 3000, '1')
-// mainFunc(WETH, LINK, 3000, '1') 
-// mainFunc(LINK, USDC, 3000, '1')
-// mainFunc(UNI, DAI, 3000, '1')
-// mainFunc(UNI, USDC, 3000, '1') 
+mainFunc('WETH', 'UNI', WETH, UNI, 3000, '1')
+mainFunc('WETH', 'DAI', WETH, DAI, 3000, '1')
+mainFunc('WETH', 'LINK', WETH, LINK, 3000, '1')
+mainFunc('LINK', 'WETH', LINK, WETH, 3000, '1')
+mainFunc('LINK', 'USDC', LINK, USDC, 3000, '1')
+mainFunc('UNI', 'DAI', UNI, DAI, 3000, '1')
 
 
 
