@@ -44,6 +44,4 @@ contract FlashLoanAAVE is IFlashLoanSimpleReceiver {
     }
 }
 
-// deployed on goerli using hardhat and the address is 0x8C92096DBA130461dCd9CF3c22f5D67F4eB183bC
-
-// on remix - 0x6dc85a986Fbad7A60a2130D806F5bdF327BbD8f9
+// deployed on goerli using hardhat and the address is 0x6dc85a986Fbad7A60a2130D806F5bdF327BbD8f9
