@@ -1,13 +1,9 @@
-# Sample Hardhat Project
+I this directory I executed a flashloan of 100 DAI on the Goerli Testnet, 
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Here's the screenshot of the executed flashloan
 
-Try running some of the following tasks:
+<img width="642" alt="AAVEflashLoan" src="https://user-images.githubusercontent.com/106004070/206731785-19dca3dc-f2a4-4485-b809-3209fe724512.png">
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+I used hardhat to compile and deploy on Goerli and finally executed in Remix. 
+
+Contract Address - 0x6dc85a986Fbad7A60a2130D806F5bdF327BbD8f9
