@@ -5,6 +5,7 @@
     "hardhat": "^2.12.3"
   },
   "dependencies": {
-    "@aave/core-v3": "^1.16.2-beta.1"
+    "@aave/core-v3": "^1.16.2-beta.1",
+    "dotenv": "^16.0.3"
   }
 }

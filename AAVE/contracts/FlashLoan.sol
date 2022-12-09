@@ -2,35 +2,48 @@
 
 pragma solidity ^0.8.0;
 
-// import IPool interface here
-// import the asset's Interface here
-// import IFLashLoanSimpleReceiver.sol and inherit the contract with it.
 import {IPool} from "@aave/core-v3/contracts/interfaces/IPool.sol";
 import {IFlashLoanSimpleReceiver} from "@aave/core-v3/contracts/flashloan/interfaces/IFlashLoanSimpleReceiver.sol";
 import {IERC20} from "@aave/core-v3/contracts/dependencies/openzeppelin/contracts/IERC20.sol";
 import {IPoolAddressesProvider} from "@aave/core-v3/contracts/interfaces/IPoolAddressesProvider.sol";
-import {IPoolAddressesProviderRegistry} from "@aave/core-v3/contracts/interfaces/IPoolAddressesProviderRegistry.sol";
+import {SafeMath} from "@aave/core-v3/contracts/dependencies/openzeppelin/contracts/SafeMath.sol";
 
-abstract contract FlashLoanAAVE is IFlashLoanSimpleReceiver {
+interface IFaucet {
+    function mint(address _token, uint256 amount) external;
+}
 
-    address asset = 0x326C977E6efc84E512bB9C30f76E30c160eD06FB;
-    address poolAddress = 0x326C977E6efc84E512bB9C30f76E30c160eD06FB;
-    uint256 public count = 0;
+contract FlashLoanAAVE is IFlashLoanSimpleReceiver {
+    using SafeMath for uint256;
 
-    function executeFlashLoan() public {
+    IPoolAddressesProvider public ADRESSES_PROVIDER = IPoolAddressesProvider(0xc4dCB5126a3AfEd129BC3668Ea19285A9f56D15D);
+    IPool public POOL;
+    IFaucet public FAUCET = IFaucet(0x1ca525Cd5Cb77DB5Fa9cBbA02A0824e283469DBe);
+
+    constructor () {
+        POOL = IPool(ADRESSES_PROVIDER.getPool());
+    }
+
+    function ADDRESSES_PROVIDER() external view returns(IPoolAddressesProvider){
+        return ADRESSES_PROVIDER;
+    }
+
+    function executeFlashLoan(address asset, uint256 amount) public {
         // perform a flashLoanSimple() on the pool contract
-        count += 1;
+        uint16 referralCode = 0;
+        bytes memory params = "";
 
+        POOL.flashLoanSimple(address(this), asset, amount, params, referralCode);
     }
 
-    function getPremium() public {
-        // call FLASHLOAN_PREMIUM_TOTAL from the pool 
-    }
+    function executeOperation(address asset, uint256 amount, uint256 premium, address initiator, bytes calldata params) external override returns(bool) { //this will be called by Pool
 
-    function executeOperation() public { //this will be called by Pool
-
-        // approve the Pool for the flashloan amount + premium
-        // we have to give 0.09% of the amount borrowed to the Pool
-
+        FAUCET.mint(asset, premium);
+        uint amountOwed = amount.add(premium);
+        IERC20(asset).approve(address(POOL), amountOwed);
+        return true;
     }
 }
+
+// deployed on goerli using hardhat and the address is 0x8C92096DBA130461dCd9CF3c22f5D67F4eB183bC
+
+// on remix - 0x6dc85a986Fbad7A60a2130D806F5bdF327BbD8f9
