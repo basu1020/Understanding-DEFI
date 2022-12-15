@@ -4,6 +4,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+compound-comet
 
 # Hardhat files
 cache
