@@ -1,13 +1,5 @@
-# Sample Hardhat Project
+## How Compund Smart Contract works 
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Inheritance Tree of Comet Contacts
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+![COMP_Comet](https://user-images.githubusercontent.com/106004070/212939333-d76a78d8-24ad-460f-b8f9-c446f145a310.png)
